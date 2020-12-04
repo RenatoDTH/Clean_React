@@ -50,7 +50,8 @@
       "@typescript-eslint/ban-types": "off",
       "max-classes-per-file":"off",
       "no-useless-constructor": "off",
-      "class-methods-use-this":"off"
+      "class-methods-use-this":"off",
+      "import/no-unresolved": "off"
     },
     "settings": { "import/resolver": { "typescript": {} } }
 }
