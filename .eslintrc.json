@@ -53,5 +53,8 @@
       "class-methods-use-this":"off",
       "import/no-unresolved": "off"
     },
-    "settings": { "import/resolver": { "typescript": {} } }
+    "settings": {
+      "import/resolver": { "typescript": {} },
+      "react": { "version": "detect" }
+  }
 }
