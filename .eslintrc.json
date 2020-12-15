@@ -51,7 +51,11 @@
       "max-classes-per-file":"off",
       "no-useless-constructor": "off",
       "class-methods-use-this":"off",
-      "import/no-unresolved": "off"
+      "import/no-unresolved": "off",
+      "no-use-before-define": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "no-shadow": "off",
+      "react/destructuring-assignment": "off"
     },
     "settings": {
       "import/resolver": { "typescript": {} },
