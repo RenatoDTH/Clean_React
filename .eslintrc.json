@@ -55,7 +55,8 @@
       "no-use-before-define": "off",
       "@typescript-eslint/no-explicit-any": "off",
       "no-shadow": "off",
-      "react/destructuring-assignment": "off"
+      "react/destructuring-assignment": "off",
+      "no-param-reassign": "off"
     },
     "settings": {
       "import/resolver": { "typescript": {} },
