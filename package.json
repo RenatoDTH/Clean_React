@@ -50,6 +50,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@testing-library/react": "^11.2.2",
     "axios": "^0.21.0",
     "faker": "^5.1.0",
     "react": "^17.0.1",
