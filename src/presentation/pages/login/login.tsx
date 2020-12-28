@@ -7,6 +7,7 @@ import {
 } from '@/presentation/components';
 import Context from '@/presentation/contexts/form/form-context';
 import { Validation } from '@/presentation/protocols/validation';
+import { truncate } from 'fs';
 import Styles from './login-styles.scss';
 
 type Props = {
@@ -45,7 +46,7 @@ const Login: React.FC<Props> = ({ validation }: Props) => {
           />
           <button
             data-testid="submit"
-            disabled
+            disabled={!!state.emailError || !!state.passwordError}
             className={Styles.submit}
             type="submit"
           >
