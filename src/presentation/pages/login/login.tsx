@@ -7,7 +7,6 @@ import {
 } from '@/presentation/components';
 import Context from '@/presentation/contexts/form/form-context';
 import { Validation } from '@/presentation/protocols/validation';
-import { truncate } from 'fs';
 import Styles from './login-styles.scss';
 
 type Props = {
