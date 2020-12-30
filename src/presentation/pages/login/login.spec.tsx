@@ -4,9 +4,11 @@ import {
   RenderResult,
   fireEvent,
   cleanup,
+  waitFor,
 } from '@testing-library/react';
 import { AuthenticationSpy, ValidationStub } from '@/presentation/test';
 import faker from 'faker';
+import { InvalidCredentialsError } from '@/domains/errors';
 import Login from './login';
 
 type SutTypes = {
@@ -80,10 +82,8 @@ describe('Login Component', () => {
     const { sut } = makeSut({ validationError });
     const errorWrap = sut.getByTestId('error-wrap');
     expect(errorWrap.childElementCount).toBe(0);
-
     const submitButton = sut.getByTestId('submit') as HTMLButtonElement;
     expect(submitButton.disabled).toBe(true);
-
     simulateStatusForField(sut, 'email', validationError);
     simulateStatusForField(sut, 'password', validationError);
   });
@@ -119,7 +119,6 @@ describe('Login Component', () => {
     populateEmailField(sut);
     populatePasswordField(sut);
     const submitButton = sut.getByTestId('submit') as HTMLButtonElement;
-
     expect(submitButton.disabled).toBe(false);
   });
 
@@ -127,7 +126,6 @@ describe('Login Component', () => {
     const { sut } = makeSut();
     simulateValidSubmit(sut);
     const spinner = sut.getByTestId('spinner');
-
     expect(spinner).toBeTruthy();
   });
 
@@ -136,7 +134,6 @@ describe('Login Component', () => {
     const email = faker.internet.email();
     const password = faker.internet.password();
     simulateValidSubmit(sut, email, password);
-
     expect(authenticationSpy.params).toEqual({
       email,
       password,
@@ -147,7 +144,6 @@ describe('Login Component', () => {
     const { sut, authenticationSpy } = makeSut();
     simulateValidSubmit(sut);
     simulateValidSubmit(sut);
-
     expect(authenticationSpy.callsCount).toBe(1);
   });
 
@@ -157,5 +153,19 @@ describe('Login Component', () => {
     populateEmailField(sut);
     fireEvent.submit(sut.getByTestId('form'));
     expect(authenticationSpy.callsCount).toBe(0);
+  });
+
+  test('Should present error if Authentication fails', async () => {
+    const { sut, authenticationSpy } = makeSut();
+    const error = new InvalidCredentialsError();
+    jest
+      .spyOn(authenticationSpy, 'auth')
+      .mockReturnValueOnce(Promise.reject(error));
+    simulateValidSubmit(sut);
+    const errorWrap = sut.getByTestId('error-wrap');
+    await waitFor(() => errorWrap);
+    const mainError = sut.getByTestId('main-error');
+    expect(mainError.textContent).toBe(error.message);
+    expect(errorWrap.childElementCount).toBe(1);
   });
 });
