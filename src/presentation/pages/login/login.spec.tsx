@@ -187,7 +187,7 @@ describe('Login Component', () => {
       'accessToken',
       authenticationSpy.account.accessToken,
     );
-    expect(history.action.length).toBe(1);
+    expect(history.length).toBe(1);
     expect(history.location.pathname).toBe('/');
   });
 
@@ -195,7 +195,7 @@ describe('Login Component', () => {
     const { sut } = makeSut();
     const register = sut.getByTestId('signup');
     fireEvent.click(register);
-    expect(history.action.length).toBe(2);
+    expect(history.length).toBe(2);
     expect(history.location.pathname).toBe('/signup');
   });
 });
