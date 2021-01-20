@@ -1,4 +1,3 @@
-import { SetStorage } from '@/data/protocols/cache/set-storage';
 import faker from 'faker';
 import 'jest-localstorage-mock';
 import { LocalStorageAdapter } from './local-storage-adapter';
