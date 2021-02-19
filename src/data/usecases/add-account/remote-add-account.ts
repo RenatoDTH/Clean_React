@@ -1,5 +1,4 @@
-import { HttpStatusCode } from '@/data/protocols/http';
-import { HttpPostClientSpy } from '@/data/test';
+import { HttpPostClient, HttpStatusCode } from '@/data/protocols/http';
 import { EmailInUseError, UnexpectedError } from '@/domains/errors';
 import { AccountModel } from '@/domains/models';
 import { AddAccount, AddAccountParams } from '@/domains/usecases';
@@ -7,14 +6,14 @@ import { AddAccount, AddAccountParams } from '@/domains/usecases';
 export class RemoteAddAccount implements AddAccount {
   constructor(
     private readonly url: string,
-    private readonly httpPostClientSpy: HttpPostClientSpy<
+    private readonly httpPostClient: HttpPostClient<
       AddAccountParams,
       AccountModel
     >,
   ) {}
 
   async add(params: AddAccountParams): Promise<AccountModel> {
-    const httpResponse = await this.httpPostClientSpy.post({
+    const httpResponse = await this.httpPostClient.post({
       url: this.url,
       body: params,
     });
