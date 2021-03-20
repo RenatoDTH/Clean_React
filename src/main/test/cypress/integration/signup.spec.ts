@@ -93,7 +93,7 @@ describe('SignUp', () => {
     cy.getByTestId('main-error').should('not.exist');
     cy.getByTestId('spinner').should('not.exist');
     FormHelper.testUrl('/');
-    FormHelper.testLocalStorageItem('accessToken');
+    FormHelper.testLocalStorageItem('account');
   });
 
   it('Should prevent multiples submit', () => {
