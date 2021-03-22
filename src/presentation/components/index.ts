@@ -7,3 +7,4 @@ export { default as LoginHeader } from './login-header/login-header';
 export { default as Logo } from './logo/logo';
 export { default as Spinner } from './spinner/spinner';
 export { default as SubmitButton } from './submit-buttom/submit-button';
+export { default as PrivateRoute } from './private-route/private-route';
