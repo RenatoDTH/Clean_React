@@ -9,7 +9,7 @@ const Header: React.FC = () => {
         <Logo />
         <div className={Styles.logoutWrap}>
           <span>Renato</span>
-          <a href="#">Sair</a>
+          <a href="/">Sair</a>
         </div>
       </div>
     </header>
