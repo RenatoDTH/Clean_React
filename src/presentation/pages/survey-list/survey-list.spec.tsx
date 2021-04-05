@@ -1,21 +1,8 @@
-import React from 'react';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { SurveyList } from '@/presentation/pages';
-import { LoadSurveyList } from '@/domains/usecases';
-import { SurveyModel } from '@/domains/models';
-import { mockSurveyListModel } from '@/domains/test';
+import { LoadSurveyListSpy } from '@/domains/test';
 import { UnexpectedError } from '@/domains/errors';
-
-class LoadSurveyListSpy implements LoadSurveyList {
-  callsCount = 0;
-
-  surveys = mockSurveyListModel();
-
-  async loadAll(): Promise<SurveyModel[]> {
-    this.callsCount += 1;
-    return this.surveys;
-  }
-}
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import React from 'react';
 
 type SutTypes = {
   loadSurveyListSpy: LoadSurveyListSpy;
@@ -43,7 +30,7 @@ describe('SurveyList Component', () => {
     await waitFor(() => screen.getByRole('heading'));
   });
 
-  test('Should render SurveyList on success', async () => {
+  test('Should render SurveyItems on success', async () => {
     makeSut();
     const surveyList = screen.getByTestId('survey-list');
     await waitFor(() => surveyList);
