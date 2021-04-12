@@ -1,5 +1,5 @@
 node_modules
 coverage
 .vscode
-public/js
 debug.log
+dist

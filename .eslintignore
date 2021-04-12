@@ -5,3 +5,5 @@ coverage
 public
 *.scss
 *.json
+*.html
+dist
