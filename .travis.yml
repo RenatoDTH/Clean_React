@@ -2,5 +2,9 @@ language: node_js
 node_js:
   - 12
 script:
-  - eslint 'src/**'
   - yarn test:coveralls
+build:
+  provider: heroku
+  api_key: $HEROKU_API
+  app: fordevsreact
+  skip_cleanup: true
