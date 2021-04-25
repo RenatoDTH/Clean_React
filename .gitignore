@@ -3,3 +3,4 @@ coverage
 .vscode
 debug.log
 dist
+yarn-error.log
