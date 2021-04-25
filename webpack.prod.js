@@ -11,39 +11,44 @@ module.exports = merge(common, {
       {
         test: /\.ts(x?)$/,
         loader: 'ts-loader',
-        exclude: /node_modules/
-      }, {
+        exclude: /node_modules/,
+      },
+      {
         test: /\.scss$/,
         use: [
           {
-           loader: MiniCssExtractPlugin.loader,
+            loader: MiniCssExtractPlugin.loader,
           },
           {
             loader: 'css-loader',
             options: {
-              modules: true
-            }
+              modules: true,
+            },
           },
           {
-            loader: 'sass-loader'
-          }
-        ]
-      }
-    ]
+            loader: 'sass-loader',
+          },
+        ],
+      },
+    ],
   },
   externals: {
     react: 'React',
-    'react-dom': 'ReactDOM'
+    axios: 'axios',
+    'react-dom': 'ReactDOM',
+    'react-router-dom': 'ReactRouterDOM',
   },
   plugins: [
     new DefinePlugin({
-      'process.env.API_URL': JSON.stringify('http://fordevs.herokuapp.com/api')
+      'process.env.API_URL': JSON.stringify(
+        'https://fordevs.herokuapp.com/api',
+      ),
     }),
-    new HtmlWebpackPlugin ({
-      template: './template.prod.html'
+    new HtmlWebpackPlugin({
+      template: './template.prod.html',
     }),
     new MiniCssExtractPlugin({
-      filename: 'main-bundle-[hash].css'
-    })
-  ]
-})
+      filename: 'main-bundle-[hash].css',
+    }),
+  ],
+});
