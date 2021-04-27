@@ -1,1 +1,5 @@
-
+{
+  "hooks": {
+    "pre-push": "yarn test:ci && yarn test:cypress:ci"
+  }
+}
