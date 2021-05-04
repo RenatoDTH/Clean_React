@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import {
-  makeLogin,
-  makeSignUp,
-  makeSurveyList,
-  makeSurveyResult,
+  MakeLogin,
+  MakeSignUp,
+  MakeSurveyList,
+  MakeSurveyResult,
 } from '@/main/factories/pages/';
 import { ApiContext } from '@/presentation/contexts';
 import { PrivateRoute } from '@/presentation/components';
@@ -23,10 +23,10 @@ const Router: React.FC = () => {
     >
       <BrowserRouter>
         <Switch>
-          <Route path="/login" exact component={makeLogin} />
-          <Route path="/signup" exact component={makeSignUp} />
-          <PrivateRoute path="/" exact component={makeSurveyList} />
-          <PrivateRoute path="/surveys/:id" component={makeSurveyResult} />
+          <Route path="/login" exact component={MakeLogin} />
+          <Route path="/signup" exact component={MakeSignUp} />
+          <PrivateRoute path="/" exact component={MakeSurveyList} />
+          <PrivateRoute path="/surveys/:id" component={MakeSurveyResult} />
         </Switch>
       </BrowserRouter>
     </ApiContext.Provider>
