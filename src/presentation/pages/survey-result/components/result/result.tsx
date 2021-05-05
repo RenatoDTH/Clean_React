@@ -21,11 +21,11 @@ const Result: React.FC<Props> = ({ surveyResult }: Props) => {
       </hgroup>
 
       <FlipMove data-testid="answers" className={Styles.answersList}>
-        {surveyResult.answers.map((answer) => (
-          <>
+        <>
+          {surveyResult.answers.map((answer) => (
             <SurveyResultAnswer key={answer.answer} answer={answer} />
-          </>
-        ))}
+          ))}
+        </>
       </FlipMove>
       <button
         className={Styles.button}
