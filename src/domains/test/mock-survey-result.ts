@@ -1,26 +1,39 @@
 import faker from 'faker';
-import { LoadSurveyList } from '@/domains/usecases';
+import { LoadSurveyResult, SaveSurveyResult } from '@/domains/usecases';
 
-export const mockSurveyModel = (): LoadSurveyList.Model => {
+export const mockSaveSurveyResultParams = (): SaveSurveyResult.Params => ({
+  answer: faker.random.words(),
+});
+
+export const mockSurveyResultModel = (): LoadSurveyResult.Model => {
   return {
-    id: faker.random.uuid(),
     question: faker.random.words(10),
-    didAnswer: faker.random.boolean(),
     date: faker.date.recent(),
+    answers: [
+      {
+        image: faker.internet.url(),
+        answer: faker.random.word(),
+        count: faker.random.number(),
+        percent: faker.random.number(100),
+        isCurrentAccountAnswer: true,
+      },
+      {
+        answer: faker.random.word(),
+        count: faker.random.number(),
+        percent: faker.random.number(100),
+        isCurrentAccountAnswer: false,
+      },
+    ],
   };
 };
 
-export const mockSurveyListModel = (): LoadSurveyList.Model[] => {
-  return [mockSurveyModel(), mockSurveyModel(), mockSurveyModel()];
-};
-
-export class LoadSurveyListSpy implements LoadSurveyList {
+export class LoadSurveyResultSpy implements LoadSurveyResult {
   callsCount = 0;
 
-  surveys = mockSurveyListModel();
+  surveyResult = mockSurveyResultModel();
 
-  async loadAll(): Promise<LoadSurveyList.Model[]> {
+  async load(): Promise<LoadSurveyResult.Model> {
     this.callsCount += 1;
-    return this.surveys;
+    return this.surveyResult;
   }
 }
