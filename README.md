@@ -11,15 +11,23 @@ Versão web do 4dev com Typescript e React com ensinamentos da [Udemy](https://w
 Inicialmente é necessário você dar um:
 
 ```
-yarn install
+yarn
 ```
 
 para baixar as dependências.
 
-E depois rodar um:
+Depois de instalar as dependências, deve-se rodar:
 
 ```
-yarn start
+yarn dev:base
+```
+
+para fazer a build de desenvolvimento
+
+e depois:
+
+```
+yarn dev
 ```
 
 Para rodar a aplicação.
